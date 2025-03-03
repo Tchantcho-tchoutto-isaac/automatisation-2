@@ -6,12 +6,7 @@ pipeline {
         }
     }
     stages {
-        stage('Install Newman Reporter htmlextra') {
-            steps {
-                // Installation du reporter avec --unsafe-perm pour contourner les problèmes de permissions
-                sh 'npm install -g newman-reporter-htmlextra --unsafe-perm'
-            }
-        }
+       
         stage('Check Newman Version') {
             steps {
                 sh 'newman --version'
