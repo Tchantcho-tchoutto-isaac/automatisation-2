@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "afbf06a8-ee96-4053-8759-40db1b4ef70e",
+		"name": "preparations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28371084",
+		"_collection_link": "https://lively-sunset-292149.postman.co/workspace/second-workspace~2fa8fa38-7934-4ba9-9ff6-d64d32baf17c/collection/28371084-afbf06a8-ee96-4053-8759-40db1b4ef70e?action=share&source=collection_link&creator=28371084"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Post Users ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"    pm.response.to.have.status(201);\r",
+									"    console.log('test reuissi')\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "creer un utilisateur "
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dossier Get ",
+			"item": [
+				{
+					"name": "getallusers ",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users ",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users "
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
