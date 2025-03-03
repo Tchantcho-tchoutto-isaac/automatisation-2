@@ -20,13 +20,13 @@ pipeline {
         stage('Run API Tests collection1') {
             steps {
                 // Exécution des tests API avec le reporter htmlextra
-                sh 'newman run collections/Collection1.postman_collection.json --reporters htmlextra --reporter-htmlextra-export result.html'
+                sh 'newman run collections/Collection1.postman_collection.json '
             }
         }
         stage('Run API Tests collection2') {
             steps {
                 // Exécution des tests API avec le reporter htmlextra
-                sh 'newman run collections/commentaire.postman_collection.json --reporters htmlextra --reporter-htmlextra-export result.html'
+                sh 'newman run collections/commentaire.postman_collection.json'
             }
         }
     }
