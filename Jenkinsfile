@@ -21,7 +21,7 @@ pipeline {
         stage('Run API Tests collection2') {
             steps {
                 // Exécution des tests API avec le reporter htmlextra
-                sh 'newman run collections/commentaire.postman_collection.json'
+                sh 'newman run collections/commentaire.postman_collection.json -e environments/environs.postman_collecti'
             }
         }
     }
