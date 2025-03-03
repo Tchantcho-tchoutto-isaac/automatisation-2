@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "7bdd40a0-25ee-42a3-a25c-d744e7d21346",
+		"name": "Collection1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28371084",
+		"_collection_link": "https://lively-sunset-292149.postman.co/workspace/second-workspace~2fa8fa38-7934-4ba9-9ff6-d64d32baf17c/collection/28371084-7bdd40a0-25ee-42a3-a25c-d744e7d21346?action=share&source=collection_link&creator=28371084"
+	},
+	"item": [
+		{
+			"name": "Requête 1(get all users ) ",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users ",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "requete2 ",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users ",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users "
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

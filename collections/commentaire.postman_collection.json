@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "1d97c8fd-fc50-4536-99b5-b7bf98206939",
+		"name": "commentaire user s-positive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "544510"
+	},
+	"item": [
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.variables.replaceIn('{{$randomUserName}}'))\r",
+							"pm.collectionVariables.set(\"password\",pm.variables.replaceIn('{{$randomPassword}}'))\r",
+							"pm.collectionVariables.set(\"email\",pm.variables.replaceIn('{{$randomEmail}}'))\r",
+							"pm.collectionVariables.set(\"job\",pm.variables.replaceIn('{{$randomJobType}}'))\r",
+							"pm.collectionVariables.set(\"about_me\",pm.variables.replaceIn('{{$randomJobDescriptor}}'))"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password1\": \"{{password}}\",\r\n    \"password2\": \"{{password}}\",\r\n    \"job\": \"{{job}}\",\r\n    \"about_me\": \"{{about_me}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}register/",
+					"host": [
+						"{{url}}register"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login_token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    console.log(pm.collectionVariables.get('username'))\r",
+							"    console.log(pm.collectionVariables.get(\"password\"))\r",
+							"    pm.response.to.have.status(200);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"recuperation et stockage token\",function(){\r",
+							"    let accessToken = pm.response.json();\r",
+							"    console.log(accessToken)\r",
+							"    pm.expect(accessToken).to.have.property('access')\r",
+							"    pm.expect(accessToken).to.have.property('refresh')\r",
+							"    pm.collectionVariables.set(\"tokens\",accessToken.access)\r",
+							"    pm.collectionVariables.set(\"refreshs\",accessToken.refress)\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}login/",
+					"host": [
+						"{{url}}login"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST comment\",function(){\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202])\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokens}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"content\": \"{{$randomLoremParagraph}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}posts/{{post_id}}/comments/",
+					"host": [
+						"{{url}}posts"
+					],
+					"path": [
+						"{{post_id}}",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "post_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "job",
+			"value": ""
+		},
+		{
+			"key": "about_me",
+			"value": ""
+		},
+		{
+			"key": "tokens",
+			"value": ""
+		},
+		{
+			"key": "refreshs",
+			"value": ""
+		}
+	]
+}
