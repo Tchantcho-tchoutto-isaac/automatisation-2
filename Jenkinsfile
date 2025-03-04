@@ -5,6 +5,9 @@ pipeline {
             args '--entrypoint=""'
         }
     }
+      triggers {
+         upstream(upstreamProjects: 'fastapi-cicd', threshold: hudson.model.Result.SUCCESS)
+      }
     parameters {
         choice(name: 'COLLECTION_NAME', choices: ['Collection1.postman_collection.json', 'preparations.postman_collection.json'], description: 'Sélectionnez la collection Postman à exécuter')
     }   
