@@ -17,7 +17,7 @@ pipeline {
         stage('Run API Tests') {
             steps {
                 // Exécution des tests API avec la collection choisie
-                sh "newman run collections/${COLLECTION_NAME} -e environements/environs.postman_collection.json"
+                sh "newman run collections/${COLLECTION_NAME} "
             }
         }
     }
